@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatingSite.API.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatingSite.API.Controllers
 {
@@ -10,18 +12,24 @@ namespace DatingSite.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly DataContext _dbContext;
+        public ValuesController(DataContext dbContext)
+        {
+            this._dbContext = dbContext;
+
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IActionResult> GetresultsAsync()
         {
-            return new string[] { "value1", "value2" };
+            return  Ok(await _dbContext.Values.ToListAsync());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult>  Get(int id)
         {
-            return "value";
+            return Ok(await _dbContext.Values.FirstOrDefaultAsync(x=>x.Id==id));
         }
 
         // POST api/values
