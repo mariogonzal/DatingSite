@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingSite.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingSite.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -18,8 +20,9 @@ namespace DatingSite.API.Controllers
             this._dbContext = dbContext;
 
         }
+
         // GET api/values
-        [HttpGet]
+        [HttpGet]        
         public async Task<IActionResult> GetresultsAsync()
         {
             return  Ok(await _dbContext.Values.ToListAsync());
