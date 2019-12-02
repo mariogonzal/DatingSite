@@ -20,8 +20,10 @@ namespace DatingSite.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            //TODO validate Request
+            //TODO validate Request            
             userForRegisterDto.UserName=userForRegisterDto.UserName.ToLower();
+            if(string.IsNullOrEmpty(userForRegisterDto.UserName) || string.IsNullOrEmpty( userForRegisterDto.Password))
+                return BadRequest("empty username or password data in request");
             if(await _repo.UserExist(userForRegisterDto.UserName))
                 return BadRequest("User already exist");
             var userToCreate= new User
