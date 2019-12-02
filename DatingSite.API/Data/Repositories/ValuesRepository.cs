@@ -1,18 +1,24 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DatingSite.API.Data.Interfaces;
 using DatingSite.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatingSite.API.Data.Repositories
 {
     public class ValuesRepository : IRepository<Value>
     {
-        private readonly DataContext _dbContext;
+        private readonly DataContext _dbContext;        
+
         public ValuesRepository(DataContext dbContext)
         {
             this._dbContext = dbContext;
         }
-        public IEnumerable<Value> List => _dbContext.Values.ToList();
+        public async Task<IEnumerable<Value>> List()
+        {
+             return await _dbContext.Values.ToListAsync();
+        }
 
         public void Add(Value entity)
         {
@@ -26,9 +32,9 @@ namespace DatingSite.API.Data.Repositories
             _dbContext.SaveChanges();
         }
 
-        public Value Find(int Id)
+        public async Task<Value> Find(int Id)
         {
-            return _dbContext.Values.FirstOrDefault(x=>x.Id==Id);
+            return await _dbContext.Values.FirstOrDefaultAsync(x=>x.Id==Id);
         }
         public void Update(Value entity)
         {
@@ -36,5 +42,6 @@ namespace DatingSite.API.Data.Repositories
             _dbContext.Values.Update(entity);
             _dbContext.SaveChanges();
         }
-    }
+
+           }
 }
