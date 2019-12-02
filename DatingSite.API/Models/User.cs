@@ -1,8 +1,7 @@
 namespace DatingSite.API.Models
 {
-    public class User
-    {
-        public int Id { get; set; }
+    public class User:DataEntityModelBase
+    {        
 
         public string UserName { get; set; }
 

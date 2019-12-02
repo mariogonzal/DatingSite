@@ -1,8 +1,7 @@
 namespace DatingSite.API.Models
 {
-    public class Value
-    {
-        public int Id { get; set; }
+    public class Value:DataEntityModelBase
+    {        
 
         public string Name { get; set; }
     }
