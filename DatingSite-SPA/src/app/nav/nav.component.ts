@@ -14,6 +14,9 @@ username: any;
   constructor(private authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
+    if ( this.authService.decodedToken ) {
+    this.username = this.username = this.authService.decodedToken.nameid[1];
+    }
   }
 
   login() {

@@ -25,6 +25,7 @@
     "classlist.js": "^1.1.20150312",
     "font-awesome": "^4.7.0",
     "install": "^0.13.0",
+    "ngx-bootstrap": "^5.2.0",
     "npm": "^6.13.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
