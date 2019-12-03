@@ -47,6 +47,9 @@ namespace DatingSite.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
+             if (!ModelState.IsValid)
+                return BadRequest();
+            
             var userFromRepo = await _repo.Login(userForLoginDto.UserName.ToLower(), userForLoginDto.Password);
             if (userFromRepo == null)
                 return Unauthorized();
