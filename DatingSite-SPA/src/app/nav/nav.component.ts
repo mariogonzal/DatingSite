@@ -24,12 +24,12 @@ model: any = {};
     console.log(this.model);
   }
 
-  loggedin(){
+  loggedin() {
     const token = localStorage.getItem('token');
     return !!token;
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     console.log('logged out');
   }
