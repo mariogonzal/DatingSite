@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using DatingSite.API.Models;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace DatingSite.API.Data
 {
     public static class Seed
-    {
+    {    
         public static void SeedData(DataContext context)
         {
             var jsonData=System.IO.File.ReadAllText("Data/UserSeedData.Json");
