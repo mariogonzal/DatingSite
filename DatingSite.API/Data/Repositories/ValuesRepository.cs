@@ -22,14 +22,12 @@ namespace DatingSite.API.Data.Repositories
 
         public void Add(Value entity)
         {
-            _dbContext.Values.Add(entity);
-            _dbContext.SaveChanges();
+            _dbContext.Values.Add(entity);            
         }
 
         public void Delete(Value entity)
         {
-            _dbContext.Remove(entity);
-            _dbContext.SaveChanges();
+            _dbContext.Remove(entity);            
         }
 
         public async Task<Value> Find(int Id)
@@ -39,9 +37,12 @@ namespace DatingSite.API.Data.Repositories
         public void Update(Value entity)
         {
             _dbContext.Entry(entity).State=Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _dbContext.Values.Update(entity);
-            _dbContext.SaveChanges();
+            _dbContext.Values.Update(entity);            
         }
 
-           }
+        public async Task<bool> SaveAll()
+        {
+             return await _dbContext.SaveChangesAsync()>0;            
+        }
+    }
 }

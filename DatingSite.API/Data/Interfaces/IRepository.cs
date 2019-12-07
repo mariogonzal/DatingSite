@@ -11,6 +11,7 @@ namespace DatingSite.API.Data.Interfaces
         void Update(T entity);
         void Delete(T entity);
         Task<T> Find(int Id);
+        Task<bool> SaveAll();
 
          
     }
