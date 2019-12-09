@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using DatingSite.API.Helpers;
 using DatingSite.API.Models;
+using AutoMapper;
 
 namespace DatingSite.API
 {
@@ -40,6 +41,7 @@ namespace DatingSite.API
             services.AddControllers().AddNewtonsoftJson();
             services.AddDbContext<DataContext>(x=>x.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
             services.AddCors();
+            services.AddAutoMapper(typeof(UserRepository).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IRepository<User>,UserRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).

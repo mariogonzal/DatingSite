@@ -31,7 +31,7 @@ namespace DatingSite.API.Data.Repositories
 
         public async Task<IEnumerable<User>> List()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(ph=>ph.Photos).ToListAsync();
         }
 
         public async Task<bool> SaveAll()
