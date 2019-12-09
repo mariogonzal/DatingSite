@@ -21,6 +21,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using DatingSite.API.Helpers;
+using DatingSite.API.Models;
 
 namespace DatingSite.API
 {
@@ -36,10 +37,11 @@ namespace DatingSite.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddDbContext<DataContext>(x=>x.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
             services.AddCors();
             services.AddScoped<IAuthRepository,AuthRepository>();
+            services.AddScoped<IRepository<User>,UserRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options => {
                 options.TokenValidationParameters=new TokenValidationParameters{
