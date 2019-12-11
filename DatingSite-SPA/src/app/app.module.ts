@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemeberDetailComponent } from './members/memeber-detail/memeber-detail.component';
+import { UserDetailResolver } from './_resolver/member-detail.resolver';
 
 // gett the token to be injected
 export function tokenGetter() {
@@ -53,7 +54,8 @@ export function tokenGetter() {
    ],
    providers: [
       AuthService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      UserDetailResolver
    ],
    bootstrap: [
       AppComponent
