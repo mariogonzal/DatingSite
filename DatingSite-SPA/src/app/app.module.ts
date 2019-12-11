@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 
-
+// gett the token to be injected
 export function tokenGetter() {
    return localStorage.getItem('token');
  }
