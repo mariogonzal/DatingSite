@@ -12,7 +12,8 @@ namespace DatingSite.API.Helpers
         
         public MapperProfile(){
             CreateMap<User,UserForDetailDto>()
-            .ForMember(d=>d.PhotoUrl , o=>o.MapFrom(p=>p.Photos.FirstOrDefault(l=>l.IsMain).Url));
+            .ForMember(d=>d.PhotoUrl , o=>o.MapFrom(p=>p.Photos.FirstOrDefault(l=>l.IsMain).Url))
+            .ForMember(d=>d.Age, o=>o.MapFrom(p=> p.DateOfBird.CalculateAge()));
             CreateMap<User,UserForListDto>()
             .ForMember(d=>d.PhotoUrl , o=>o.MapFrom(p=>p.Photos.FirstOrDefault(l=>l.IsMain).Url))
             .ForMember(d=>d.Age, o=>o.MapFrom(p=> p.DateOfBird.CalculateAge()));

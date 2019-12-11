@@ -16,10 +16,11 @@ user: User;
               private routes: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getUser();
   }
 
   getUser() {
-    this.userService.getUser( this.routes.snapshot.params['id'] ).subscribe((user: User) => {
+    this.userService.getUser( this.routes.snapshot.params.id ).subscribe((user: User) => {
       this.user = user;
     }, error => {
       this.alertify.error( 'Error at fetching user' );
