@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 
 @Component({
@@ -11,9 +13,10 @@ export class HomeComponent implements OnInit {
 registerMode = false;
 values: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: Router, private auth: AuthService) { }
 
   ngOnInit() {
+    this.validateSigned();
 
   }
 
@@ -23,5 +26,11 @@ values: any;
 
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
+  }
+
+  validateSigned() {
+    if  (this.auth.loggedIn()) {
+      this.route.navigate(['/members']);
+    }
   }
 }
