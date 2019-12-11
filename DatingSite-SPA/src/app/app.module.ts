@@ -17,6 +17,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemeberDetailComponent } from './members/memeber-detail/memeber-detail.component';
 
 // gett the token to be injected
 export function tokenGetter() {
@@ -32,7 +33,8 @@ export function tokenGetter() {
       MemberListComponent,
       ListComponent,
       MessagesComponent,
-      MemberCardComponent
+      MemberCardComponent,
+      MemeberDetailComponent
    ],
    imports: [
       BrowserModule,
